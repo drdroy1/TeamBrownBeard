@@ -1,0 +1,41 @@
+Shaumik Ashraf
+APCS2-pd9
+03-08-2016
+
+	Trace Diagram
+
+ ==|== represents split by Sort(); ==&== represents Merge(); --- represents pause/wait
+
+[5,2,7,3,4]====|===[5,2]====|==[5]--------------------==&==[2,5]====&==[2,3,4,5,7]
+               |            |==[2]--------------------==&           &
+               |					       	    &
+               |===[7,3,4]==|==[7]--------------------==&==[3,4,7]==&
+			    |                           &
+			    |==[3,4]==|==[3]==&==[3,4]==&
+				      |==[4]==&
+
+              O(n)   +    O(2n)  +   O(n)  + O(n) + O(2n)   +    O(n)  = O(n)
+
+
+The split by Sort() is O(n)
+The Merge() is O(n)
+
+Adding to function stack (via recursion or anything else) 
+does NOT cause multiplication of O() of operations, it 
+causes addition
+
+However, iteration of a function/operation causes
+multiplication of O()s
+
+"Proof" (Intuitive)
+
+ 3 + (4 + 2) is O(1)
+
+ let f(x,y):=x+y
+
+ 3 + (4 + 2)  = f( 3, f(4,2) ); which is still O(1)
+
+ f( 3, f(4,2) ) creates function stack:
+	
+	       f()
+	m() => m() => m() => resolved
